@@ -9,12 +9,10 @@ const Home = () => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.feedContainer}>
-        {contents &&
-          contents.data.map((content) => {
-            return <Content key={content.id} content={content} />
-          })}
-      </div>
+      {contents &&
+        contents.data.map((content) => {
+          return <Content key={content.id} content={content} />
+        })}
     </div>
   )
 }
