@@ -3,7 +3,7 @@
   flex-direction: column;
   background-color: #00303b;
   color: #f1f2da;
-  border-radius: 20px;
+  border-radius: 12px;
   text-decoration: none;
   border-style: solid;
   border-color: #00303b;
@@ -15,6 +15,9 @@
   aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 12px 12px 0 0;
+  border-style: solid;
+  border-color: #f1f2da;
+  border-width: 3px;
 }
 
 .detail {

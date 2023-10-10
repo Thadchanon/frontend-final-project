@@ -29,3 +29,9 @@
   height: 45px;
   width: auto;
 }
+
+.login {
+  color: #f1f2da;
+  text-decoration: none;
+  cursor: pointer;
+}
