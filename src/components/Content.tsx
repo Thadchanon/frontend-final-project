@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ContentDTO } from '../types/dto'
 import classes from './Content.module.css'
+import Rating from '@mui/material/Rating'
 
 interface IContentProps {
   content: ContentDTO
@@ -8,7 +9,7 @@ interface IContentProps {
 
 const Content = ({ content }: IContentProps) => {
   return (
-    <Link to={`/post/${content.id}`} className={classes.card}>
+    <Link to={`/content/${content.id}`} className={classes.card}>
       <img src={content.thumbnailUrl}></img>
       <div className={classes.detail}>
         <div className={classes.detailGroup}>
@@ -21,7 +22,7 @@ const Content = ({ content }: IContentProps) => {
         <div className={classes.detailRow}>
           <p className={classes.postBy}>{content.postedBy.username}</p>
           <div className={classes.rating}>
-            <p>{content.rating}</p>
+            <Rating value={content.rating} readOnly />
           </div>
         </div>
       </div>
