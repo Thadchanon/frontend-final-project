@@ -1,11 +1,14 @@
 import classes from './CreateButton.module.css'
+import { Link } from 'react-router-dom'
 
-const CreateContent = () => {
+const CreateButton = () => {
   return (
     <div className={classes.container}>
-      <div className={classes.button}>Create new content</div>
+      <Link to="/create">
+        <div className={classes.button}>Create new content</div>
+      </Link>
     </div>
   )
 }
 
-export default CreateContent
+export default CreateButton
