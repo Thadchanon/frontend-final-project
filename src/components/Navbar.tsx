@@ -9,10 +9,10 @@ const Navbar = () => {
   return (
     <nav className={classes.navBar}>
       <div className={classes.menu}>
-        <div className={classes.logo}>
+        <Link to="/" className={classes.logo}>
           <img src={logo} />
           <span>LearnHub</span>
-        </div>
+        </Link>
       </div>
       <div className={classes.menu}>
         {isLoggedIn ? (

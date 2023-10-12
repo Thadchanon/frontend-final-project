@@ -1,2 +1,75 @@
 .container {
+  width: 60%;
+  margin: 32px auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  background-color: #00303b;
+  color: #f1f2da;
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.creator {
+  font-size: 22px;
+  font-weight: 400;
+  color: #f1f2da;
+  text-decoration: none;
+}
+
+.video {
+  display: flex;
+  justify-content: center;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 16px 16px 16px;
+}
+
+.commentText {
+  font-size: 18px;
+  font-style: italic;
+}
+
+.commentFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  text-align: right;
+  font-size: 16px;
+}
+
+.rating {
+  transform: scaleX(-1);
+}
+
+.emDash {
+  margin-right: 4px;
+}
+
+.reactPlayer {
+  border-style: solid;
+  border-color: #f1f2da;
+  border-width: 3px;
+  border-radius: 5px;
 }

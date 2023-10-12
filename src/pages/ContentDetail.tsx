@@ -1,6 +1,9 @@
 import useContent from '../hooks/useContent'
 import classes from './ContentDetail.module.css'
 import { useParams } from 'react-router-dom'
+import Rating from '@mui/material/Rating'
+import { Link } from 'react-router-dom'
+import ReactPlayer from 'react-player'
 
 const ContentDetail = () => {
   const { id } = useParams()
@@ -11,18 +14,33 @@ const ContentDetail = () => {
 
   return (
     <div className={classes.container}>
-      {content && (
-        <>
-          <h1>{content.videoTitle}</h1>
-          <p>{content.creatorName}</p>
-          <img src={content.thumbnailUrl}></img>
-          <p>{content.comment}</p>
-          <p>{content.rating}</p>
-          <p>{content.postedBy.username}</p>
-          <p>{content.createdAt}</p>
-          <p>{content.updatedAt}</p>
-        </>
-      )}
+      <div className={classes.content}>
+        {content && (
+          <>
+            <div className={classes.header}>
+              <h1 className={classes.title}>{content.videoTitle}</h1>
+              <Link to={content.creatorUrl} className={classes.creator}>
+                <p>{content.creatorName}</p>
+              </Link>
+            </div>
+            <div className={classes.video}>
+              <ReactPlayer url={content.videoUrl} controls={true} className={classes.reactPlayer} />
+            </div>
+            <div className={classes.comment}>
+              <p className={classes.commentText}>{content.comment}</p>
+              <div className={classes.commentFooter}>
+                <Rating value={content.rating} readOnly className={classes.rating} />
+                <p>
+                  <span className={classes.emDash}>—</span>
+                  {content.postedBy.username}
+                </p>
+                <p>{content.createdAt}</p>
+                <p>(Updated on {content.updatedAt})</p>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   )
 }

@@ -23,6 +23,8 @@
   align-items: center;
   gap: 20px;
   font-weight: 700;
+  text-decoration: none;
+  color: #f1f2da;
 }
 
 .logo img {

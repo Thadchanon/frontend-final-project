@@ -13,7 +13,7 @@ const useContent = (id: string) => {
       try {
         const res = await axios.get<ContentDTO>(`https://api.learnhub.thanayut.in.th/content/${id}`)
 
-        setContent(res.data)
+        setContent({ ...res.data, createdAt: toDate(res.data.createdAt), updatedAt: toDate(res.data.updatedAt) })
       } catch (err) {
         setError('Data not found')
       } finally {
@@ -23,6 +23,11 @@ const useContent = (id: string) => {
 
     fetchData()
   }, [id])
+
+  const toDate = (d: string) => {
+    const date = new Date(d)
+    return date.toDateString()
+  }
 
   return { content, isLoading, error }
 }
