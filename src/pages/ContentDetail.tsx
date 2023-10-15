@@ -4,10 +4,12 @@ import { useParams } from 'react-router-dom'
 import Rating from '@mui/material/Rating'
 import { Link } from 'react-router-dom'
 import ReactPlayer from 'react-player'
+import { useAuth } from '../providers/AuthProvider'
 
 const ContentDetail = () => {
   const { id } = useParams()
   const { content, isLoading, error } = useContent(id || '1')
+  const { username } = useAuth()
 
   if (isLoading) return <h1>Loading...</h1>
   if (error) return <p>{error}</p>
@@ -36,6 +38,13 @@ const ContentDetail = () => {
                 </p>
                 <p>{content.createdAt}</p>
                 <p>(Updated on {content.updatedAt})</p>
+                {username === content.postedBy.username && (
+                  <div>
+                    <Link to={`/edit/${id}`} className={classes.edit}>
+                      Edit
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </>

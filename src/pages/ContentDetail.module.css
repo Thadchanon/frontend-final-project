@@ -73,3 +73,7 @@
   border-width: 3px;
   border-radius: 5px;
 }
+.edit {
+  text-decoration: none;
+  color: #ffce96;
+}

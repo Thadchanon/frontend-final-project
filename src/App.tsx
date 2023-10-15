@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import ContentDetail from './pages/ContentDetail'
 import CreateContent from './pages/CreateContent'
+import Edit from './pages/Edit'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/content/:id" element={<ContentDetail />} />
         <Route path="/create" element={<CreateContent />} />
+        <Route path="/edit/:id" element={<Edit />} />
       </Routes>
     </div>
   )

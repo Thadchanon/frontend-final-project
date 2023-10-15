@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ContentDTO } from '../types/dto'
+import { ContentDTO, UpdateContentDTO } from '../types/dto'
 import axios from 'axios'
 
 const useContent = (id: string) => {
@@ -29,7 +29,21 @@ const useContent = (id: string) => {
     return date.toDateString()
   }
 
-  return { content, isLoading, error }
+  const editContent = async (updateBody: UpdateContentDTO) => {
+    const token = localStorage.getItem('token')
+
+    try {
+      await axios.patch(`https://api.learnhub.thanayut.in.th/content/${id}`, updateBody, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+    } catch (err) {
+      throw new Error('Can not edit content!')
+    }
+  }
+  return { content, isLoading, error, editContent }
 }
 
 export default useContent
