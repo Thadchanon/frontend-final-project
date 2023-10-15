@@ -5,7 +5,6 @@ import axios from 'axios'
 const useContents = () => {
   const [contents, setContents] = useState<ContentsDTO | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,29 +22,24 @@ const useContents = () => {
     fetchData()
   }, [])
 
-  const createContent = async (newVideoUrl: string, newComment: string, newRating: number) => {
+  const createContent = async (newVideoUrl: string, newComment: string, newRating: number | null) => {
     const newContent: CreateContentDTO = {
       videoUrl: newVideoUrl,
       comment: newComment,
-      rating: newRating,
+      rating: newRating || 0,
     }
-
-    setIsSubmitting(true)
+    const token = localStorage.getItem('token')
 
     try {
-      const res = await axios.post<ContentDTO>('https://api.learnhub.thanayut.in.th/content', newContent, {
-        headers: { 'Content-Type': 'application/json' },
+      await axios.post<ContentDTO>('https://api.learnhub.thanayut.in.th/content', newContent, {
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
       })
-
-      console.log(res.data)
     } catch (err) {
       throw new Error('Cannot create content')
-    } finally {
-      setIsSubmitting(false)
     }
   }
 
-  return { contents, isLoading, isSubmitting, createContent }
+  return { contents, isLoading, createContent }
 }
 
 export default useContents
