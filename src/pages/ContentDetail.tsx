@@ -8,11 +8,15 @@ import { useAuth } from '../providers/AuthProvider'
 
 const ContentDetail = () => {
   const { id } = useParams()
-  const { content, isLoading, error } = useContent(id || '1')
+  const { content, isLoading, error, deleteContent } = useContent(id || '1')
   const { username } = useAuth()
 
   if (isLoading) return <h1>Loading...</h1>
   if (error) return <p>{error}</p>
+
+  const handleDelete = () => {
+    deleteContent()
+  }
 
   return (
     <div className={classes.container}>
@@ -39,11 +43,16 @@ const ContentDetail = () => {
                 <p>{content.createdAt}</p>
                 <p>(Updated on {content.updatedAt})</p>
                 {username === content.postedBy.username && (
-                  <div>
-                    <Link to={`/edit/${id}`} className={classes.edit}>
-                      Edit
-                    </Link>
-                  </div>
+                  <>
+                    <div>
+                      <Link to={`/edit/${id}`} className={classes.edit}>
+                        Edit
+                      </Link>
+                    </div>
+                    <button className={classes.delete} onClick={handleDelete}>
+                      Delete
+                    </button>
+                  </>
                 )}
               </div>
             </div>

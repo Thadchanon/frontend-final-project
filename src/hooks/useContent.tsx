@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ContentDTO, UpdateContentDTO } from '../types/dto'
 import axios from 'axios'
+import { useNavigate } from 'react-router'
 
 const useContent = (id: string) => {
   const [content, setContent] = useState<ContentDTO | null>(null)
@@ -43,7 +44,25 @@ const useContent = (id: string) => {
       throw new Error('Can not edit content!')
     }
   }
-  return { content, isLoading, error, editContent }
+
+  const navigate = useNavigate()
+
+  const deleteContent = async () => {
+    const token = localStorage.getItem('token')
+    try {
+      await axios.delete(`https://api.learnhub.thanayut.in.th/content/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      navigate('/')
+    } catch (err) {
+      setError('Cannot delete content id : ' + id)
+    }
+  }
+
+  return { content, isLoading, error, editContent, deleteContent }
 }
 
 export default useContent
