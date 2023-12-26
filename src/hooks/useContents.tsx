@@ -10,7 +10,7 @@ const useContents = () => {
     const fetchData = async () => {
       setIsLoading(true)
       try {
-        const res = await axios.get<ContentsDTO>('https://api.learnhub.thanayut.in.th/content')
+        const res = await axios.get<ContentsDTO>('http://localhost:8080/content')
 
         setContents(res.data)
       } catch (err) {
@@ -31,7 +31,7 @@ const useContents = () => {
     const token = localStorage.getItem('token')
 
     try {
-      await axios.post<ContentDTO>('https://api.learnhub.thanayut.in.th/content', newContent, {
+      await axios.post<ContentDTO>('http://localhost:8080/content', newContent, {
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
       })
     } catch (err) {

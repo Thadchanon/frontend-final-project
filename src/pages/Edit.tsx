@@ -3,7 +3,7 @@ import Rating from '@mui/material/Rating'
 import { useNavigate, useParams } from 'react-router-dom'
 import useContent from '../hooks/useContent'
 import { FormEvent, useState } from 'react'
-import { toast } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 
 const EditContent = () => {
   const { id } = useParams()

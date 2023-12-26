@@ -8,12 +8,15 @@ import CreateContent from './pages/CreateContent'
 import Edit from './pages/Edit'
 import GuardedRoute from './guards/GuardedRoute'
 import { useAuth } from './providers/AuthProvider'
+import { Toaster } from 'react-hot-toast'
+import Register from './pages/Register'
 
 function App() {
   const { isLoggedIn } = useAuth()
   return (
     <div className="App">
       <Navbar />
+      <Toaster position="top-center" />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/content/:id" element={<ContentDetail />} />
@@ -23,6 +26,7 @@ function App() {
         </Route>
         <Route element={<GuardedRoute isRouteAccessible={!isLoggedIn} redirectRoute="/" />}>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Route>
       </Routes>
     </div>

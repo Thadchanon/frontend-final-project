@@ -1,11 +1,12 @@
 import { FormEvent, useState } from 'react'
-import classes from './Login.module.css'
+import classes from './register.module.css'
 import { useAuth } from '../providers/AuthProvider'
 import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
-  const { login } = useAuth()
+const Register = () => {
+  const { register } = useAuth()
   const navigate = useNavigate()
+  const [name, setName] = useState<string>('')
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
@@ -13,9 +14,8 @@ const Login = () => {
     e.preventDefault()
 
     try {
-      await login(username, password)
-      navigate('/')
-      window.location.reload()
+      await register(username, password, name)
+      navigate('/login')
     } catch (err) {
       console.log(err)
     }
@@ -23,8 +23,12 @@ const Login = () => {
 
   return (
     <div className={classes.container}>
-      <h1 className={classes.title}>Login</h1>
+      <h1 className={classes.title}>Register</h1>
       <form className={classes.form} onSubmit={handleSubmit}>
+        <div className={classes.formGroup}>
+          <label>Name</label>
+          <input type="text" onChange={(e) => setName(e.target.value)} />
+        </div>
         <div className={classes.formGroup}>
           <label>Username</label>
           <input type="text" onChange={(e) => setUsername(e.target.value)} />
@@ -34,8 +38,8 @@ const Login = () => {
           <input type="password" onChange={(e) => setPassword(e.target.value)} />
         </div>
         <div className={classes.formGroup}>
-          <button type="submit" value="Login">
-            Login
+          <button type="submit" value="Register">
+            Register
           </button>
         </div>
       </form>
@@ -43,4 +47,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register
