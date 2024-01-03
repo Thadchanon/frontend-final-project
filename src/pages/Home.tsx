@@ -1,7 +1,6 @@
 import Content from '../components/Content'
 import useContents from '../hooks/useContents'
 import CreateButton from '../components/CreateButton'
-import classes from './Home.module.css'
 
 const Home = () => {
   const { contents, isLoading } = useContents()
@@ -11,7 +10,7 @@ const Home = () => {
   return (
     <div>
       <CreateButton />
-      <div className={classes.container}>
+      <div className="grid justify-items-stretch items-stretch gap-8 mx-32 my-9 grid-cols-auto-fill-280">
         {contents &&
           contents.data.map((content) => {
             return <Content key={content.id} content={content} />
